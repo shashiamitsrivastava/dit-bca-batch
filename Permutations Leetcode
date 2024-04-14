@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<Integer> smallList= new ArrayList<>();
+        List<List<Integer>> finalList = new ArrayList<>();
+        permHelper(nums,smallList,finalList);
+        return finalList;
+        
+    }
+
+    static void permHelper(int[] nums , List<Integer> smallList , List<List<Integer>> finalList){
+        if(smallList.size() == nums.length){
+            finalList.add(new ArrayList(smallList));
+            return;
+        }
+        for( int i : nums){
+            if(!smallList.contains(i)){
+            smallList.add(i);
+            permHelper(nums,smallList,finalList);
+            smallList.remove(smallList.size() -1);
+            }
+        }
+    }
+
+
+}
