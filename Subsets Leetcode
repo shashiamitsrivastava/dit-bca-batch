@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+       List<Integer> smallList = new ArrayList<>();
+       List<List<Integer>> finalList = new ArrayList<>();
+       subsetHelper(nums,0,smallList,finalList);
+       return finalList;
+    }
+
+    static void subsetHelper(int[] nums , int index,List<Integer> smallList , List<List<Integer>>finalList){
+        finalList.add(new ArrayList(smallList));
+        for(int i=index;i<nums.length;i++){
+            if(!smallList.contains(nums[i])){
+                smallList.add(nums[i]);
+                subsetHelper(nums,i,smallList,finalList);
+                smallList.remove(smallList.size()-1);
+            }
+        }
+    }
+}
