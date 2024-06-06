@@ -1,17 +1,31 @@
 public class ReverseArray {
-    static void reverse(int[] arr, int first, int last) {
-        if (first >= last) {
-            return;
+    public static void reverse(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
         }
-        int temp = arr[last];
-        arr[last] = arr[first];
-        arr[first] = temp;
-        reverse(arr, first + 1, last - 1);
+    }
+
+    public static void rotateArrayByk(int arr[]) {
+
+    }
+
+    public static int largest(int[] nums){
+        
+    }
+
+    public static int secondLargest(int[] arr) {
+
     }
 
     public static void main(String[] args) {
-        int arr[] = { 10, 20, 30, 40, 50, 60 };
-        reverse(arr, 0, arr.length - 1);
+        int arr[] = { 1, 2, 3, 4, 5 };
+        reverse(arr);
         for (int i : arr) {
             System.out.print(i + " ");
         }
