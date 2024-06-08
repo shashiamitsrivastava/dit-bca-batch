@@ -1,0 +1,17 @@
+class Solution {
+
+    public static String PartyType( long a[], int n)
+    {
+        // Your code goes here
+        HashMap<Long , Boolean> map = new HashMap<>();
+        for(int i = 0;i<a.length;i++){
+            if(map.containsKey(a[i])){
+                return "BOYS";
+            }
+            else{
+                map.put(a[i],true);
+            }
+        }
+        return "GIRLS"; 
+    }
+}
