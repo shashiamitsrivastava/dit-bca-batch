@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxProfit=0;
+        int curProfit=0;
+        int lowerBuyPrice = prices[0];
+ 
+        for(int i=1; i<prices.length; i++){
+            if(prices[i] < lowerBuyPrice){
+                lowerBuyPrice = prices[i];
+            }
+            
+            curProfit = prices[i] - lowerBuyPrice;
+ 
+            if(curProfit > maxProfit){
+                maxProfit = curProfit;
+            }
+        }
+ 
+        return maxProfit;
+    }
+}
