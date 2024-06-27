@@ -1,0 +1,68 @@
+class Solution {
+
+    public ListNode reverse(ListNode head){
+        if(head == null && head.next == null){
+            return head;
+        }
+
+            ListNode cur = head;
+            ListNode prev = null;
+            ListNode next = null;
+
+            while(cur !=  null){
+                next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+
+            head = prev;
+            return head;
+        
+    }
+
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head == null && head.next == null){
+            return null;
+        }
+
+        int count = 1;
+
+        ListNode   cur = head;
+        ListNode prev = null;
+        ListNode next = null;
+
+        while(count < left){
+            prev = cur;
+            cur = cur.next;
+            count++;
+        }
+
+        ListNode start = cur;
+
+        while(count != right){
+            cur = cur.next;
+            count++;
+
+        }
+
+        next = cur.next;
+        cur.next = null;
+
+
+        ListNode newHead = reverse(start);
+        if(prev  != null){
+            prev.next = newHead;
+        }
+
+        cur = newHead;
+        while(cur.next != null){
+            cur = cur.next;
+        }
+
+        cur.next = next;
+
+        if(left == 1) return newHead;
+        return head;
+    }
+}
