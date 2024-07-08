@@ -1,0 +1,28 @@
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        String finalS = getFinalString(s);
+        String finalT = getFinalString(t);
+        /* at the end check both strings are equal or not and send boolean res */
+        return finalS.equals(finalT);
+    }
+ 
+    public String getFinalString(String str) {
+        Stack<Character> stack = new Stack<>();
+ 
+        for (char c : str.toCharArray()) {
+            if (c == '#') {
+                if (!stack.isEmpty()) {
+                    stack.pop(); /* backspace hits here */
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        /* Now pop all char from stack and adding to result */
+        while (!stack.isEmpty()) {
+            result.append(stack.pop());
+        }
+        return result.reverse().toString();
+    }
+}
