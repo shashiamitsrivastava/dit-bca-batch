@@ -1,0 +1,36 @@
+class Tree {
+        ArrayList<Integer> Kdistance(Node root, int k) {
+            ArrayList<Integer> result = new ArrayList<>();
+            if (root == null) {
+                return result;
+            }
+ 
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            int count = 0;
+ 
+            while (!q.isEmpty()) {
+                int levelSize = q.size();
+                if (count == k) {
+                    for (int i = 0; i < levelSize; i++) {
+                        Node currentNode = q.poll();
+                        result.add(currentNode.data);
+                    }
+                    break; // found the desired level
+                }
+ 
+                for (int i = 0; i < levelSize; i++) {
+                    Node currentNode = q.poll();
+                    if (currentNode.left != null) {
+                        q.add(currentNode.left);
+                    }
+                    if (currentNode.right != null) {
+                        q.add(currentNode.right);
+                    }
+                }
+                count++;
+            }
+            return result;
+        }
+ 
+    }
